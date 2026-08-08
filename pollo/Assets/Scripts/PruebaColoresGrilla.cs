@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 public partial class PruebaColoresGrilla : Node
 {
@@ -18,9 +17,6 @@ public partial class PruebaColoresGrilla : Node
 
 	private CalcularPorcentajeAciertoColor _calculadora;
 	private Random _random = new Random();
-
-	// Color original en escala 0-255, guardado para comparar
-	private int _origR, _origG, _origB;
 
 	public override void _Ready()
 	{
