@@ -23,4 +23,12 @@ public partial class CalcularPorcentajeAciertoColor : Node{
 	
 	
 	
+	public override void _Ready(){
+		Color hola = new Color(1,1,1);
+		Color hola12 = new Color(1,1,1);
+		double resultado = EvaluarColor(hola, hola12);
+		GD.Print(resultado);
+		
+			
+	}
 }
