@@ -1,3 +1,23 @@
 [gd_scene format=3 uid="uid://d4jotbw6vphlo"]
 
-[node name="Node2D" type="Node2D" unique_id=1741196126]
+[ext_resource type="Script" uid="uid://dytahtinc8msf" path="res://Mezclador.cs" id="1_20131"]
+[ext_resource type="Texture2D" uid="uid://dqt2iayylobcx" path="res://TEST-CUBE.png" id="2_pgemg"]
+
+[node name="Node2D" type="Node2D" unique_id=1741196126 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_20131")
+colorFinal = Color(0, 0.9166665, 1, 1)
+step = 0.268
+sprite = NodePath("TestCube")
+
+[node name="TestCube" type="Sprite2D" parent="." unique_id=820228957]
+modulate = Color(0.26666665, 1, 0, 1)
+position = Vector2(592, 308)
+texture = ExtResource("2_pgemg")
+
+[node name="Label" type="Label" parent="." unique_id=1188793598]
+texture_filter = 1
+offset_left = 292.0
+offset_top = 201.0
+offset_right = 947.0
+offset_bottom = 224.0
+text = "ESTO ES UN SPRITE, NO ES UN RECT. UTILIZAR sprite.Modulate, en vez de rect.Color"
