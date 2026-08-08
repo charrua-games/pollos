@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://b0pwrjxo8o34i"]
+
+[ext_resource type="Script" uid="uid://7ttpx650sh4f" path="res://Assets/Scripts/PruebaColores.cs" id="1_gij1s"]
+
+[node name="PruebaColores" type="Control" unique_id=1037406458 node_paths=PackedStringArray("_color1", "_color2", "_panelPorcentaje", "_botonEvaluar", "_r1", "_g1", "_b1", "_r2", "_g2", "_b2")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gij1s")
+_color1 = NodePath("Color1")
+_color2 = NodePath("Color2")
+_panelPorcentaje = NodePath("panelPorcentajeSimilitud")
+_botonEvaluar = NodePath("Button")
+_r1 = NodePath("VBoxContainer/LineEdit")
+_g1 = NodePath("VBoxContainer/LineEdit2")
+_b1 = NodePath("VBoxContainer/LineEdit3")
+_r2 = NodePath("VBoxContainer2/LineEdit")
+_g2 = NodePath("VBoxContainer2/LineEdit2")
+_b2 = NodePath("VBoxContainer2/LineEdit3")
+
+[node name="Color1" type="Panel" parent="." unique_id=434113472]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 256.0
+offset_right = 149.0
+offset_bottom = 296.0
+scale = Vector2(3.8059597, -3.1787875)
+
+[node name="Color2" type="Panel" parent="." unique_id=663995484]
+layout_mode = 0
+offset_left = 891.00006
+offset_top = 263.0
+offset_right = 931.00006
+offset_bottom = 303.0
+scale = Vector2(3.8059597, -3.1787875)
+
+[node name="panelPorcentajeSimilitud" type="Label" parent="." unique_id=631729379]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 153.0
+offset_right = 583.0
+offset_bottom = 176.0
+scale = Vector2(1.56, 3.2400007)
+
+[node name="Button" type="Button" parent="." unique_id=959857142]
+layout_mode = 0
+offset_left = 509.00003
+offset_top = 456.00003
+offset_right = 595.0
+offset_bottom = 487.00003
+scale = Vector2(1.7685323, 2.474986)
+text = "Comparar"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=487228364]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 322.0
+offset_right = 218.0
+offset_bottom = 423.0
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1825793858]
+layout_mode = 2
+
+[node name="LineEdit2" type="LineEdit" parent="VBoxContainer" unique_id=53820115]
+layout_mode = 2
+
+[node name="LineEdit3" type="LineEdit" parent="VBoxContainer" unique_id=1943821829]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=615956276]
+layout_mode = 0
+offset_left = 941.0
+offset_top = 321.0
+offset_right = 1010.0
+offset_bottom = 422.0
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2" unique_id=1988443194]
+layout_mode = 2
+
+[node name="LineEdit2" type="LineEdit" parent="VBoxContainer2" unique_id=1602148083]
+layout_mode = 2
+
+[node name="LineEdit3" type="LineEdit" parent="VBoxContainer2" unique_id=1405241941]
+layout_mode = 2

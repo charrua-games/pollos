@@ -1,0 +1,231 @@
+[gd_scene format=3 uid="uid://dmrouo4vquyrr"]
+
+[ext_resource type="Script" uid="uid://be13h6p42jnrj" path="res://Assets/Scripts/PruebaColoresGrilla.cs" id="1_iedc1"]
+
+[node name="PruebaGrilla" type="Control" unique_id=765088652 node_paths=PackedStringArray("_paneles", "_labels", "_panelOriginal", "_botonRegenerar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iedc1")
+_paneles = [NodePath("Panel"), NodePath("Panel2"), NodePath("Panel3"), NodePath("Panel4"), NodePath("Panel5"), NodePath("Panel6"), NodePath("Panel7"), NodePath("Panel8"), NodePath("Panel9"), NodePath("Panel10"), NodePath("Panel11"), NodePath("Panel12"), NodePath("Panel13"), NodePath("Panel14"), NodePath("Panel15"), NodePath("Panel15")]
+_labels = [NodePath("Panel/Label"), NodePath("Panel2/Label"), NodePath("Panel3/Label"), NodePath("Panel4/Label"), NodePath("Panel5/Label"), NodePath("Panel6/Label"), NodePath("Panel7/Label"), NodePath("Panel8/Label"), NodePath("Panel9/Label"), NodePath("Panel10/Label"), NodePath("Panel11/Label"), NodePath("Panel12/Label"), NodePath("Panel13/Label"), NodePath("Panel14/Label"), NodePath("Panel15/Label"), NodePath("Panel16/Label")]
+_panelOriginal = NodePath("Panel17")
+_botonRegenerar = NodePath("Button")
+
+[node name="Panel" type="Panel" parent="." unique_id=1110751177]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 341.0
+offset_right = 58.0
+offset_bottom = 381.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=28649648]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel17" type="Panel" parent="." unique_id=1305564143]
+layout_mode = 0
+offset_left = 597.99994
+offset_top = 341.0
+offset_right = 637.99994
+offset_bottom = 381.0
+scale = Vector2(7.7600007, 5.719999)
+
+[node name="Panel2" type="Panel" parent="." unique_id=2067791349]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 342.0
+offset_right = 148.0
+offset_bottom = 382.0
+
+[node name="Label" type="Label" parent="Panel2" unique_id=893477413]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel3" type="Panel" parent="." unique_id=1173669095]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 342.0
+offset_right = 238.0
+offset_bottom = 382.0
+
+[node name="Label" type="Label" parent="Panel3" unique_id=710985001]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel4" type="Panel" parent="." unique_id=207717386]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 342.0
+offset_right = 342.0
+offset_bottom = 382.0
+
+[node name="Label" type="Label" parent="Panel4" unique_id=80617570]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel5" type="Panel" parent="." unique_id=1531828719]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 411.0
+offset_right = 57.0
+offset_bottom = 451.0
+
+[node name="Label" type="Label" parent="Panel5" unique_id=986501866]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel6" type="Panel" parent="." unique_id=382495952]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 412.0
+offset_right = 151.0
+offset_bottom = 452.0
+
+[node name="Label" type="Label" parent="Panel6" unique_id=114460513]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel7" type="Panel" parent="." unique_id=1489511223]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 409.0
+offset_right = 240.0
+offset_bottom = 449.0
+
+[node name="Label" type="Label" parent="Panel7" unique_id=779449698]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel8" type="Panel" parent="." unique_id=1710764941]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 415.0
+offset_right = 336.0
+offset_bottom = 455.0
+
+[node name="Label" type="Label" parent="Panel8" unique_id=849555137]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel9" type="Panel" parent="." unique_id=2026511855]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 479.0
+offset_right = 52.0
+offset_bottom = 519.0
+
+[node name="Label" type="Label" parent="Panel9" unique_id=1241200408]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel10" type="Panel" parent="." unique_id=521351987]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 491.0
+offset_right = 154.0
+offset_bottom = 531.0
+
+[node name="Label" type="Label" parent="Panel10" unique_id=1444205680]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel11" type="Panel" parent="." unique_id=1595722520]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 487.0
+offset_right = 236.0
+offset_bottom = 527.0
+
+[node name="Label" type="Label" parent="Panel11" unique_id=1960111634]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel12" type="Panel" parent="." unique_id=2091467771]
+layout_mode = 0
+offset_left = 293.0
+offset_top = 480.0
+offset_right = 333.0
+offset_bottom = 520.0
+
+[node name="Label" type="Label" parent="Panel12" unique_id=1543727415]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel13" type="Panel" parent="." unique_id=596044458]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 550.0
+offset_right = 50.0
+offset_bottom = 590.0
+
+[node name="Label" type="Label" parent="Panel13" unique_id=22969672]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel14" type="Panel" parent="." unique_id=1574074384]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 560.0
+offset_right = 165.0
+offset_bottom = 600.0
+
+[node name="Label" type="Label" parent="Panel14" unique_id=973562044]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel15" type="Panel" parent="." unique_id=1196851984]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 560.0
+offset_right = 255.0
+offset_bottom = 600.0
+
+[node name="Label" type="Label" parent="Panel15" unique_id=124102567]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel16" type="Panel" parent="." unique_id=486059915]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 555.0
+offset_right = 342.0
+offset_bottom = 595.0
+
+[node name="Label" type="Label" parent="Panel16" unique_id=603264464]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -6.0
+offset_right = 44.0
+offset_bottom = 17.0
+
+[node name="Container" type="Container" parent="." unique_id=1444138224]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="." unique_id=480482271]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 259.0
+offset_right = 95.0
+offset_bottom = 267.0
+scale = Vector2(11.48, 5.24)
