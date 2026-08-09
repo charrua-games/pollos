@@ -42,7 +42,7 @@ offset_top = 177.0
 offset_right = 744.0
 offset_bottom = 235.0
 theme_override_font_sizes/font_size = 40
-text = "PANCHIN GAME"
+text = "ALQUIMIOTERAPIA"
 
 [node name="Doggy" type="Sprite2D" parent="." unique_id=693129735]
 z_index = -1

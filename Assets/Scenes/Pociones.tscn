@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://cxv7817yndq31" path="res://Assets/Scripts/Contenedor.cs" id="6_lbitj"]
 [ext_resource type="Script" uid="uid://bhj2j5pnagaqb" path="res://Assets/Scripts/CalcularPorcentajeAciertoColor.cs" id="7_ju54e"]
 [ext_resource type="Script" uid="uid://ba38y0nthkfgo" path="res://Assets/Scripts/ButtonTransitionScript.cs" id="9_caott"]
-[ext_resource type="PackedScene" uid="uid://sbb6akun7lfp" path="res://Assets/Scenes/Overworld.tscn" id="10_o0mai"]
 
 [node name="Pociones" type="Node2D" unique_id=1265537581 node_paths=PackedStringArray("pocionReferencia", "plantas", "evaluarButton", "contenedor", "calcularPuntaje")]
 position = Vector2(33, -15)
@@ -91,4 +90,4 @@ offset_right = 101.0
 offset_bottom = 110.0
 text = "atras"
 script = ExtResource("9_caott")
-EscenaDestino = ExtResource("10_o0mai")
+EscenaDestino = "uid://sbb6akun7lfp"
