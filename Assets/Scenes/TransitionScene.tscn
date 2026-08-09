@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cvocsr63gs4rr"]
+
+[ext_resource type="Script" uid="uid://bqvlhp3c60xif" path="res://Assets/Scripts/CanvasTransition.cs" id="1_21a11"]
+
+[node name="TransitionScene" type="Node2D" unique_id=1044715794]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=637923798 node_paths=PackedStringArray("colorRect")]
+script = ExtResource("1_21a11")
+colorRect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=430364087]
+offset_right = 1152.0
+offset_bottom = 653.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
