@@ -46,14 +46,17 @@ texture = ExtResource("1_4ta2c")
 
 [node name="Planta2" parent="." unique_id=653259467 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
 position = Vector2(213, 632)
+IdPocion = "Rojo"
 contenedor = NodePath("../Contenedor")
 
 [node name="Planta3" parent="." unique_id=2134906103 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
 position = Vector2(338, 632)
+IdPocion = "Azul"
 contenedor = NodePath("../Contenedor")
 
 [node name="Planta4" parent="." unique_id=1065968970 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
 position = Vector2(474, 638)
+IdPocion = "Amarillo"
 contenedor = NodePath("../Contenedor")
 
 [node name="Mezclador" type="Node2D" parent="." unique_id=2116288329 node_paths=PackedStringArray("sprite")]

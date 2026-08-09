@@ -49,7 +49,6 @@ RepeticionesPreset = 5
 [node name="VisualizadorNotas" type="Node2D" parent="." unique_id=888150282]
 script = ExtResource("7_x51ob")
 RutaControlRitmo = NodePath("../ControlRitmo")
-RutaCarriles = NodePath("../Carriles")
 UsarYHitDesdeHitLine = false
 YHit = 571.0
 LeadTimeSegundos = 3.5

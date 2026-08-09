@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TransitionScene="*uid://cvocsr63gs4rr"
+DesbloqueoPociones="*uid://b7it16xpnyn2b"
 
 [display]
 
