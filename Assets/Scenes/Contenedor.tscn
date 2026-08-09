@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b8j0w6mipr0iu"]
+
+[ext_resource type="Script" uid="uid://cxv7817yndq31" path="res://Assets/Scripts/Contenedor.cs" id="1_75wre"]
+[ext_resource type="Texture2D" uid="uid://dqt2iayylobcx" path="res://Assets/Sprites/TEST-CUBE.png" id="1_g1xen"]
+
+[node name="Contenedor" type="Node2D" unique_id=242830557 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_75wre")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1107127894]
+scale = Vector2(0.8301887, -2)
+texture = ExtResource("1_g1xen")
