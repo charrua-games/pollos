@@ -38,13 +38,3 @@ scale = Vector2(1.36, 0.6799991)
 flat = true
 script = ExtResource("1_5ti5g")
 EscenaDestino = "uid://dnr8mh71cthc1"
-
-[node name="PlantasButton" type="Button" parent="." unique_id=419269655]
-z_index = 1
-offset_left = 1032.0
-offset_top = -17.0
-offset_right = 1323.0
-offset_bottom = 683.0
-flat = true
-script = ExtResource("1_5ti5g")
-EscenaDestino = "res://Assets/Scenes/Minijuegos/mini_juego_proc.tscn"
