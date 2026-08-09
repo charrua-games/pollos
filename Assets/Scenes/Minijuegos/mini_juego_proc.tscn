@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://csjmpdqkio85f" path="res://Assets/Scripts/ControlRitmo.cs" id="1_j0lgb"]
 [ext_resource type="Script" uid="uid://cei3wli576r8e" path="res://Assets/Scripts/RelojRitmo.cs" id="2_1y4lj"]
-[ext_resource type="Texture2D" uid="uid://c7iue6eir368w" path="res://Assets/lineaplaceholder.png" id="3_chi5u"]
+[ext_resource type="Texture2D" uid="uid://c7iue6eir368w" path="res://Assets/Sprites/lineaplaceholder.png" id="3_chi5u"]
 [ext_resource type="Script" uid="uid://b1pjfn34dmvki" path="res://Assets/Scripts/SpawnerNotas.cs" id="5_0sa8n"]
 [ext_resource type="Script" uid="uid://dqrpm43bd8ugl" path="res://Assets/Scripts/VisualizadorNotas.cs" id="7_x51ob"]
 

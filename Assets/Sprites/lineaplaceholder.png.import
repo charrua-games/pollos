@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7iue6eir368w"
-path="res://.godot/imported/lineaplaceholder.png-691b016ce54b0d1a51742f42e5a3042e.ctex"
+path="res://.godot/imported/lineaplaceholder.png-342ce381a99828b20dfdc67201fb5ce5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/lineaplaceholder.png"
-dest_files=["res://.godot/imported/lineaplaceholder.png-691b016ce54b0d1a51742f42e5a3042e.ctex"]
+source_file="res://Assets/Sprites/lineaplaceholder.png"
+dest_files=["res://.godot/imported/lineaplaceholder.png-342ce381a99828b20dfdc67201fb5ce5.ctex"]
 
 [params]
 

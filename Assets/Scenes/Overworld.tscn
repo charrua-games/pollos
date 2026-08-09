@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://sbb6akun7lfp"]
+
+[ext_resource type="Script" uid="uid://ba38y0nthkfgo" path="res://Assets/Scripts/ButtonTransitionScript.cs" id="1_5ti5g"]
+[ext_resource type="PackedScene" uid="uid://d4jotbw6vphlo" path="res://Assets/Scenes/MezclarDebug.tscn" id="2_7shk7"]
+[ext_resource type="PackedScene" uid="uid://bntlvf7q34nsy" path="res://Assets/Scenes/Minijuegos/mini_juego_proc.tscn" id="3_7shk7"]
+
+[node name="Overworld" type="Node2D" unique_id=1093189996]
+
+[node name="Label" type="Label" parent="." unique_id=588919756]
+texture_filter = 1
+offset_left = 272.0
+offset_top = 311.0
+offset_right = 874.0
+offset_bottom = 366.0
+theme_override_font_sizes/font_size = 40
+text = "OVERWORLD PLACEHOLDER xff"
+
+[node name="MezclarButton" type="Button" parent="." unique_id=1466772982]
+offset_left = -158.0
+offset_top = -19.0
+offset_right = 133.0
+offset_bottom = 681.0
+flat = true
+script = ExtResource("1_5ti5g")
+EscenaDestino = ExtResource("2_7shk7")
+
+[node name="PlantasButton" type="Button" parent="." unique_id=419269655]
+offset_left = 1036.0
+offset_top = -17.0
+offset_right = 1327.0
+offset_bottom = 683.0
+flat = true
+script = ExtResource("1_5ti5g")
+EscenaDestino = ExtResource("3_7shk7")
