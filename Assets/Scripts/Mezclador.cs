@@ -3,16 +3,21 @@ using System;
 
 public partial class Mezclador : Node2D
 {
-	private Color colorActual;
-	private Color colorObjetivo;
+	private float hueActual;
+	private float saturacionActual;
+	private float valorActual;
+
+	private float hueObjetivo;
+	private float saturacionObjetivo;
+	private float valorObjetivo;
+
 	private bool activo = false;
 
 	[Export]
 	public Sprite2D sprite;
 
-	// Qué tan rápido se acerca el color actual al objetivo mientras se mantiene el click.
 	[Export(PropertyHint.Range, "0,1")]
-	public float step { get; set; } = 0.5f; // velocidad de mezcla (por segundo)
+	public float step { get; set; } = 0.3f; // velocidad de mezcla (por segundo)
 
 	public override void _Ready()
 	{
@@ -42,10 +47,15 @@ public partial class Mezclador : Node2D
 			size.Y / 2
 		);
 
-		colorActual = sample;
-		colorObjetivo = sample;
+		hueActual = sample.H;
+		saturacionActual = sample.S;
+		valorActual = sample.V;
 
-		sprite.Modulate = colorActual;
+		hueObjetivo = hueActual;
+		saturacionObjetivo = saturacionActual;
+		valorObjetivo = valorActual;
+
+		ActualizarSprite();
 	}
 
 	public override void _Process(double delta)
@@ -55,27 +65,74 @@ public partial class Mezclador : Node2D
 			return;
 		}
 
-		// Se acerca gradualmente al color de la poción que se está manteniendo presionada.
-		// Como se detiene al soltar (no llega necesariamente al 100%), el resultado
-		// queda como una mezcla parcial, y la próxima poción se combina sobre eso.
-		colorActual = colorActual.Lerp(colorObjetivo, step * (float)delta);
+		float velocidad = step * (float)delta;
+
+		// --- Hue: interpolación circular (0 a 1 da la vuelta) ---
+		float diferenciaHue = DiferenciaHue(hueActual, hueObjetivo);
+
+		if (Mathf.Abs(diferenciaHue) <= velocidad)
+		{
+			hueActual = hueObjetivo;
+		}
+		else
+		{
+			hueActual += Mathf.Sign(diferenciaHue) * velocidad;
+			hueActual = Mathf.PosMod(hueActual, 1f);
+		}
+
+		// --- Saturación y Valor: interpolación lineal normal ---
+		saturacionActual = Mathf.MoveToward(saturacionActual, saturacionObjetivo, velocidad);
+		valorActual = Mathf.MoveToward(valorActual, valorObjetivo, velocidad);
+
+		ActualizarSprite();
+
+		bool llego =
+			Mathf.Abs(diferenciaHue) < 0.001f &&
+			Mathf.Abs(saturacionActual - saturacionObjetivo) < 0.001f &&
+			Mathf.Abs(valorActual - valorObjetivo) < 0.001f;
+
+		if (llego)
+		{
+			GD.Print("Mezcla terminada. Hue: ", hueActual);
+		}
+	}
+
+	private void ActualizarSprite()
+	{
+		Color colorActual = Color.FromHsv(hueActual, saturacionActual, valorActual);
 		sprite.Modulate = colorActual;
 	}
 
-	// Se llama en ButtonDown: fija hacia qué color mezclar y arranca el avance.
-	public void CambiarObjetivo(Color nuevoColor)
+	// Diferencia angular entre dos hues, en el rango (-0.5, 0.5]
+	private float DiferenciaHue(float actual, float objetivo)
 	{
-		colorObjetivo = nuevoColor;
-		activo = true;
+		float diferencia = objetivo - actual;
 
-		GD.Print("Mezclando hacia: ", colorObjetivo);
+		if (diferencia > 0.5f)
+		{
+			diferencia -= 1f;
+		}
+		else if (diferencia < -0.5f)
+		{
+			diferencia += 1f;
+		}
+
+		return diferencia;
 	}
 
-	// Se llama en ButtonUp: congela el color donde haya quedado.
+	// Se llama mientras se mantiene click + Space (ver Pocion.cs)
+	public void CambiarObjetivo(Color nuevoColor)
+	{
+		hueObjetivo = nuevoColor.H;
+		saturacionObjetivo = nuevoColor.S;
+		valorObjetivo = nuevoColor.V;
+		activo = true;
+	}
+
+	// Se llama al soltar el click o Space
 	public void DetenerMezcla()
 	{
 		activo = false;
-
-		GD.Print("Mezcla detenida en: ", colorActual);
+		GD.Print("Mezcla detenida en Hue: ", hueActual);
 	}
 }

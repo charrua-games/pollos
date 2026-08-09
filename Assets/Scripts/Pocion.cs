@@ -13,71 +13,71 @@ public partial class Pocion : Node2D
 
 	private T BuscarNodo<T>(Node nodo) where T : Node
 	{
-		if (nodo is T resultado)
-			return resultado;
+	   if (nodo is T resultado)
+		  return resultado;
 
-		foreach (Node hijo in nodo.GetChildren())
-		{
-			T encontrado = BuscarNodo<T>(hijo);
+	   foreach (Node hijo in nodo.GetChildren())
+	   {
+		  T encontrado = BuscarNodo<T>(hijo);
 
-			if (encontrado != null)
-				return encontrado;
-		}
+		  if (encontrado != null)
+			 return encontrado;
+	   }
 
-		return null;
+	   return null;
 	}
 
 	public override void _Ready()
 	{
-		_mezclador = BuscarNodo<Mezclador>(GetTree().CurrentScene);
+	   _mezclador = BuscarNodo<Mezclador>(GetTree().CurrentScene);
 
-		if (_mezclador == null)
-			throw new Exception("No se encontraron Mezclador");
+	   if (_mezclador == null)
+		  throw new Exception("No se encontraron Mezclador");
 
-		if (sprite == null)
-		{
-			sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
-		}
+	   if (sprite == null)
+	   {
+		  sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
+	   }
 
-		ActualizarColor();
+	   ActualizarColor();
 
-		if (UsarColor != null)
-		{
-			UsarColor.ButtonDown += OnBotonApretado;
-			UsarColor.ButtonUp += OnBotonSoltado;
-		}
+	   if (UsarColor != null)
+	   {
+		  UsarColor.ButtonDown += OnBotonApretado;
+		  UsarColor.ButtonUp += OnBotonSoltado;
+	   }
 	}
 
 	public override void _Process(double delta)
 	{
-		if (botonPresionado && Input.IsKeyPressed(Key.Space))
-		{
-			_mezclador.CambiarObjetivo(color);
-		}
+	   if (botonPresionado && Input.IsKeyPressed(Key.Space))
+	   {
+		  _mezclador.CambiarObjetivo(color);
+	   }
 	}
 
 	private void OnBotonApretado()
 	{
-		botonPresionado = true;
+	   botonPresionado = true;
 	}
 
 	private void OnBotonSoltado()
 	{
-		botonPresionado = false;
-		_mezclador.DetenerMezcla();
+	   botonPresionado = false;
+	   _mezclador.DetenerMezcla();
 	}
 
 	private void ActualizarColor()
 	{
-		if (sprite != null)
-		{
-			sprite.Modulate = color;
-		}
+	   if (sprite != null)
+	   {
+		  sprite.Modulate = color;
+	   }
 	}
 
 	public void CambiarColor(Color nuevoColor)
 	{
-		color = nuevoColor;
-		ActualizarColor();
+	   color = nuevoColor;
+	   ActualizarColor();
 	}
 }
