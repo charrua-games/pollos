@@ -4,6 +4,9 @@ using System;
 
 public partial class SpawnerNotas : Node
 {
+   [Signal]
+   public delegate void NotasFinalizadasEventHandler(bool exito);
+
    public enum RitmoPreset
    {
 	  Manual = 0,
@@ -36,6 +39,7 @@ public partial class SpawnerNotas : Node
 	  }
 
 	  _controlRitmo = GetNode<ControlRitmo>(RutaControlRitmo);
+	  _controlRitmo.ProcesamientoFinalizado += OnProcesamientoFinalizado;
 	  NormalizarAccionesSegunInputMap();
 	  List<Nota> notas = PresetActual == RitmoPreset.Manual ? GenerarNotasDesdeManual() : GenerarNotasDesdePreset();
 
@@ -50,6 +54,11 @@ public partial class SpawnerNotas : Node
 	  {
 		 _controlRitmo.IniciarMinijuego();
 	  }
+   }
+
+   private void OnProcesamientoFinalizado(bool exito)
+   {
+	  EmitSignal(SignalName.NotasFinalizadas, exito);
    }
 
    private List<Nota> GenerarNotasDesdeManual()
