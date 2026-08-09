@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Pollo"
+run/main_scene="uid://djwdxnbypgvk4"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+TransitionScene="*uid://cvocsr63gs4rr"
 
 [display]
 

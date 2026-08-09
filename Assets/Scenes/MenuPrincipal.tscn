@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://djwdxnbypgvk4"]
+
+[ext_resource type="Texture2D" uid="uid://gq8txi5n8jnq" path="res://Assets/Sprites/doggy.png" id="1_2nqgk"]
+[ext_resource type="Script" uid="uid://8fdwgwm77ux8" path="res://Assets/Scripts/BotonInicio.cs" id="1_5eu3p"]
+[ext_resource type="Script" uid="uid://c1us5jcaf40tm" path="res://Assets/Scripts/BotonSalir.cs" id="2_ijn4i"]
+
+[node name="Node2D" type="Node2D" unique_id=1120546479]
+
+[node name="BotonJugar" type="Button" parent="." unique_id=393831521]
+texture_filter = 1
+offset_left = 517.0
+offset_top = 307.0
+offset_right = 650.0
+offset_bottom = 364.0
+theme_override_font_sizes/font_size = 35
+text = "Jugar"
+script = ExtResource("1_5eu3p")
+
+[node name="BotonOpciones" type="Button" parent="." unique_id=86565114]
+texture_filter = 1
+offset_left = 507.0
+offset_top = 390.0
+offset_right = 672.0
+offset_bottom = 447.0
+theme_override_font_sizes/font_size = 35
+text = "Opciones"
+
+[node name="BotonSalir" type="Button" parent="." unique_id=1601973922]
+texture_filter = 1
+offset_left = 518.0
+offset_top = 481.0
+offset_right = 651.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 35
+text = "Salir"
+script = ExtResource("2_ijn4i")
+
+[node name="Label" type="Label" parent="." unique_id=470997773]
+texture_filter = 1
+offset_left = 438.0
+offset_top = 177.0
+offset_right = 744.0
+offset_bottom = 235.0
+theme_override_font_sizes/font_size = 40
+text = "PANCHIN GAME"
+
+[node name="Doggy" type="Sprite2D" parent="." unique_id=693129735]
+z_index = -1
+position = Vector2(774, 203)
+scale = Vector2(1, 0.7008114)
+texture = ExtResource("1_2nqgk")
+
+[connection signal="pressed" from="BotonJugar" to="BotonJugar" method="_on_pressed"]
+[connection signal="pressed" from="BotonSalir" to="BotonSalir" method="_on_pressed"]

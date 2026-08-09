@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqt2iayylobcx"
-path="res://.godot/imported/TEST-CUBE.png-2047120864b87bdf93e81b935b8ae4a9.ctex"
+uid="uid://gq8txi5n8jnq"
+path="res://.godot/imported/doggy.png-142d1aade3fd3ab849a2d73fa4875b43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TEST-CUBE.png"
-dest_files=["res://.godot/imported/TEST-CUBE.png-2047120864b87bdf93e81b935b8ae4a9.ctex"]
+source_file="res://Assets/Sprites/doggy.png"
+dest_files=["res://.godot/imported/doggy.png-142d1aade3fd3ab849a2d73fa4875b43.ctex"]
 
 [params]
 
