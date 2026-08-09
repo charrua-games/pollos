@@ -21,12 +21,19 @@ public partial class PocionesControl : Node2D
 
 	[Export]
 	private Label ganasteLabel { get; set; }
+
 	[Export]
 	private Label PerdisteLabel { get; set; }
+
+	[Export]
+	private DesbloqueoPociones desbloqueoPociones { get; set; }
 
 	private Color colorReferencia;
 
 	private Random _random = new Random();
+
+	// Indica si ya se puede comenzar el desafío
+	private bool puedeEvaluar = false;
 
 	public override void _Ready()
 	{
@@ -34,9 +41,9 @@ public partial class PocionesControl : Node2D
 		PerdisteLabel.Visible = false;
 
 		PrepararPlantas();
-		CrearColorReferencia();
 
-		GD.Print("Color de referencia: ", colorReferencia);
+		// Primero comprobamos si tiene las 3 pociones
+		ComprobarPociones();
 
 		evaluarButton.ButtonDown += OnBotonApretado;
 	}
@@ -46,6 +53,37 @@ public partial class PocionesControl : Node2D
 		plantas[0].CambiarColor(Colors.Red);
 		plantas[1].CambiarColor(Colors.Blue);
 		plantas[2].CambiarColor(Colors.Yellow);
+	}
+
+	private void ComprobarPociones()
+	{
+		if (desbloqueoPociones == null)
+		{
+			GD.PrintErr("DesbloqueoPociones no está asignado.");
+			return;
+		}
+
+		bool tieneRojo = desbloqueoPociones.EstaDesbloqueada("rojo");
+		bool tieneAmarillo = desbloqueoPociones.EstaDesbloqueada("amarillo");
+		bool tieneAzul = desbloqueoPociones.EstaDesbloqueada("azul");
+
+		if (tieneRojo && tieneAmarillo && tieneAzul)
+		{
+			GD.Print("Tiene las tres pociones. Comenzando desafío.");
+
+			puedeEvaluar = true;
+
+			// AHORA se genera el color de referencia
+			CrearColorReferencia();
+
+			GD.Print("Color de referencia: ", colorReferencia);
+		}
+		else
+		{
+			GD.Print("Todavía no tiene las tres pociones.");
+
+			puedeEvaluar = false;
+		}
 	}
 
 	private void CrearColorReferencia()
@@ -73,6 +111,13 @@ public partial class PocionesControl : Node2D
 
 	private void OnBotonApretado()
 	{
+		// No hacer nada si todavía no tiene las tres pociones
+		if (!puedeEvaluar)
+		{
+			GD.Print("Todavía no puedes evaluar.");
+			return;
+		}
+
 		Color colorReferenciaActual = pocionReferencia.ObtenerColor();
 		Color colorContenedor = contenedor.ObtenerColor();
 
@@ -93,16 +138,14 @@ public partial class PocionesControl : Node2D
 		if (porcentajeAcierto < 95)
 		{
 			contenedor.RecibirColor(Colors.Black);
-			PerdisteLabel.Visible = true;
 
+			PerdisteLabel.Visible = true;
 			ganasteLabel.Visible = false;
 		}
 		else
 		{
-			
 			ganasteLabel.Visible = true;
 			PerdisteLabel.Visible = false;
-
 		}
 	}
 }
