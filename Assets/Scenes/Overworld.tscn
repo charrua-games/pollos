@@ -3,31 +3,49 @@
 [ext_resource type="Script" uid="uid://ba38y0nthkfgo" path="res://Assets/Scripts/ButtonTransitionScript.cs" id="1_5ti5g"]
 [ext_resource type="PackedScene" uid="uid://dnr8mh71cthc1" path="res://Assets/Scenes/Pociones.tscn" id="2_7shk7"]
 [ext_resource type="PackedScene" uid="uid://bntlvf7q34nsy" path="res://Assets/Scenes/Minijuegos/mini_juego_proc.tscn" id="3_7shk7"]
+[ext_resource type="Texture2D" uid="uid://bhj4yewpe54hy" path="res://Assets/Sprites/Fondo Completo.png" id="4_ow8tm"]
 
 [node name="Overworld" type="Node2D" unique_id=1093189996]
 
-[node name="Label" type="Label" parent="." unique_id=588919756]
-texture_filter = 1
-offset_left = 272.0
-offset_top = 311.0
-offset_right = 874.0
-offset_bottom = 366.0
-theme_override_font_sizes/font_size = 40
-text = "OVERWORLD PLACEHOLDER xff"
+[node name="TextureRect" type="TextureRect" parent="." unique_id=608105427]
+z_index = -99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -83.00006
+offset_top = -47.00003
+offset_right = 1837.0
+offset_bottom = 1033.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_ow8tm")
 
 [node name="MezclarButton" type="Button" parent="." unique_id=1466772982]
-offset_left = -158.0
-offset_top = -19.0
-offset_right = 133.0
-offset_bottom = 681.0
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 548.0
+offset_top = 168.00002
+offset_right = 839.0
+offset_bottom = 868.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.36, 0.6799991)
 flat = true
 script = ExtResource("1_5ti5g")
 EscenaDestino = ExtResource("2_7shk7")
 
 [node name="PlantasButton" type="Button" parent="." unique_id=419269655]
-offset_left = 1036.0
+z_index = 1
+offset_left = 1032.0
 offset_top = -17.0
-offset_right = 1327.0
+offset_right = 1323.0
 offset_bottom = 683.0
 flat = true
 script = ExtResource("1_5ti5g")

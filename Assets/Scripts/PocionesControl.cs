@@ -34,9 +34,8 @@ public partial class PocionesControl : Node2D
 	private void PrepararPlantas()
 	{
 		plantas[0].CambiarColor(Colors.Red);
-		plantas[1].CambiarColor(Colors.Green);
-		plantas[2].CambiarColor(Colors.Blue);
-		plantas[3].CambiarColor(Colors.Yellow);
+		plantas[1].CambiarColor(Colors.Blue);
+		plantas[2].CambiarColor(Colors.Yellow);
 	}
 
 	private void CrearColorReferencia()
