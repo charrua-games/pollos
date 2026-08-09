@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bjm8pffmvlwrt" path="res://Assets/Sprites/Fondo Zoom.png" id="2_mjaro"]
 [ext_resource type="PackedScene" uid="uid://cq15awwa43wn4" path="res://Assets/Scenes/PocionReferecia.tscn" id="4_4f5qa"]
 [ext_resource type="PackedScene" uid="uid://c5p8h8qo717ol" path="res://Assets/Scenes/Pocion.tscn" id="5_1qa1u"]
+[ext_resource type="Texture2D" uid="uid://dosrjyarvuka3" path="res://Assets/Sprites/Beaker.png" id="5_caott"]
 [ext_resource type="Script" uid="uid://dytahtinc8msf" path="res://Assets/Scripts/Mezclador.cs" id="6_ju54e"]
 [ext_resource type="Script" uid="uid://cxv7817yndq31" path="res://Assets/Scripts/Contenedor.cs" id="6_lbitj"]
 [ext_resource type="Script" uid="uid://bhj2j5pnagaqb" path="res://Assets/Scripts/CalcularPorcentajeAciertoColor.cs" id="7_ju54e"]
@@ -35,28 +36,30 @@ size_flags_vertical = 4
 texture = ExtResource("2_mjaro")
 
 [node name="PocionReferecia" parent="." unique_id=1215557556 instance=ExtResource("4_4f5qa")]
-position = Vector2(772, 283)
+position = Vector2(817, 108)
 
 [node name="Contenedor" type="Node2D" parent="." unique_id=11392968 node_paths=PackedStringArray("sprite")]
-position = Vector2(349, 499)
+position = Vector2(469, 490)
 script = ExtResource("6_lbitj")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Contenedor" unique_id=1512632524]
-texture = ExtResource("1_4ta2c")
+position = Vector2(-17.999998, 68.99999)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_caott")
 
 [node name="Planta2" parent="." unique_id=653259467 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(213, 632)
+position = Vector2(266, 319)
 IdPocion = "Rojo"
 contenedor = NodePath("../Contenedor")
 
 [node name="Planta3" parent="." unique_id=2134906103 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(338, 632)
+position = Vector2(423, 316)
 IdPocion = "Azul"
 contenedor = NodePath("../Contenedor")
 
 [node name="Planta4" parent="." unique_id=1065968970 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(474, 638)
+position = Vector2(574, 314)
 IdPocion = "Amarillo"
 contenedor = NodePath("../Contenedor")
 
