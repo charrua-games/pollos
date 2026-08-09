@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cow0idsu6va4f"]
+
+[ext_resource type="Texture2D" uid="uid://bpwf3mhhaqaux" path="res://Assets/Sprites/Button.png" id="1_egqs1"]
+
+[node name="Btn9Slice" type="Control" unique_id=700929927]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1223664167]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_egqs1")
+region_rect = Rect2(230, 250, 610, 590)

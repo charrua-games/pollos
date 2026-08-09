@@ -105,7 +105,7 @@ offset_bottom = 1209.0
 scale = Vector2(-0.60937595, 0.15780291)
 flat = true
 script = ExtResource("9_caott")
-EscenaDestino = "res://Assets/Scenes/Minijuegos/mini_juego_proc.tscn"
+EscenaDestino = "uid://p0uab4eet25w"
 
 [node name="Sprite2D" type="Sprite2D" parent="PlantasButton" unique_id=1875133118]
 position = Vector2(141.12796, 386.5584)

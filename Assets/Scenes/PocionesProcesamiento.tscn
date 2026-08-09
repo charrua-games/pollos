@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://p0uab4eet25w"]
+
+[ext_resource type="Texture2D" uid="uid://ubsxfrbyx4mk" path="res://Assets/Sprites/Fondo Zoom Blur.png" id="2_cphcf"]
+[ext_resource type="PackedScene" uid="uid://bntlvf7q34nsy" path="res://Assets/Scenes/Minijuegos/mini_juego_proc.tscn" id="5_bvmsm"]
+[ext_resource type="Script" path="res://Assets/Scripts/PocionesProcesamiento.cs" id="6_pproc"]
+
+[sub_resource type="Shader" id="Shader_bl55k"]
+code = "shader_type canvas_item;
+
+uniform float lod: hint_range(0.0, 5) = 0.0;
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, lod);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvob8"]
+shader = SubResource("Shader_bl55k")
+
+[node name="Pociones" type="Node2D" unique_id=1265537581]
+position = Vector2(33, -15)
+script = ExtResource("6_pproc")
+
+[node name="Fondo" type="TextureRect" parent="." unique_id=353311941]
+material = SubResource("ShaderMaterial_hvob8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.00006
+offset_top = -55.0
+offset_right = 1883.0
+offset_bottom = 1025.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_cphcf")
+stretch_mode = 3
+
+[node name="MiniJuegoProc" parent="." unique_id=1458594322 instance=ExtResource("5_bvmsm")]
+position = Vector2(-36, 12)
