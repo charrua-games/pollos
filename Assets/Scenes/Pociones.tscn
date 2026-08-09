@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://ba38y0nthkfgo" path="res://Assets/Scripts/ButtonTransitionScript.cs" id="9_caott"]
 [ext_resource type="Texture2D" uid="uid://xef2r1ondmh7" path="res://Assets/Sprites/Mortero.png" id="11_o0mai"]
 
-[node name="Pociones" type="Node2D" unique_id=1265537581 node_paths=PackedStringArray("pocionReferencia", "plantas", "evaluarButton", "contenedor", "calcularPuntaje")]
+[node name="Pociones" type="Node2D" unique_id=1265537581 node_paths=PackedStringArray("pocionReferencia", "plantas", "evaluarButton", "contenedor", "calcularPuntaje", "ganasteLabel")]
 position = Vector2(33, -15)
 script = ExtResource("1_a7roa")
 pocionReferencia = NodePath("PocionReferecia")
@@ -20,6 +20,7 @@ plantas = [NodePath("Planta2"), NodePath("Planta3"), NodePath("Planta4")]
 evaluarButton = NodePath("Comparar")
 contenedor = NodePath("Contenedor")
 calcularPuntaje = NodePath("CalcularPorcentaje")
+ganasteLabel = NodePath("Label")
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=353311941]
 anchors_preset = 15
@@ -112,3 +113,21 @@ position = Vector2(141.12796, 386.5584)
 rotation = 3.1415927
 scale = Vector2(0.4983445, -2.0097861)
 texture = ExtResource("11_o0mai")
+
+[node name="Label" type="Label" parent="." unique_id=631802636]
+offset_left = 326.00003
+offset_top = 239.0
+offset_right = 830.0
+offset_bottom = 322.0
+scale = Vector2(1.1895173, 1.435145)
+theme_override_font_sizes/font_size = 60
+text = "Acertaste el color"
+
+[node name="Label2" type="Label" parent="." unique_id=1441902203]
+offset_left = 462.00006
+offset_top = 235.00002
+offset_right = 966.0
+offset_bottom = 318.0
+scale = Vector2(1.1895173, 1.435145)
+theme_override_font_sizes/font_size = 60
+text = "Perdiste"
