@@ -1,18 +1,21 @@
 [gd_scene format=3 uid="uid://c5p8h8qo717ol"]
 
 [ext_resource type="Script" uid="uid://gnrnn5ct4xb7" path="res://Assets/Scripts/Pocion.cs" id="1_dgt8t"]
-[ext_resource type="Texture2D" uid="uid://dqt2iayylobcx" path="res://Assets/Sprites/TEST-CUBE.png" id="2_ckmsy"]
+[ext_resource type="Texture2D" uid="uid://bnwoch4dsxytc" path="res://Assets/Sprites/Potion empty.png" id="2_mxtbv"]
+[ext_resource type="Texture2D" uid="uid://c3cbjpgm6gxa" path="res://Assets/Sprites/Potion full.png" id="3_ivycy"]
 
 [node name="Planta" type="Node2D" unique_id=427452167 node_paths=PackedStringArray("UsarColor", "sprite")]
 script = ExtResource("1_dgt8t")
 UsarColor = NodePath("TextureButton")
 color = Color(0, 0, 0, 1)
 sprite = NodePath("Sprite2D")
+TexturaVacia = ExtResource("2_mxtbv")
+TexturaLlena = ExtResource("3_ivycy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1509553239]
 position = Vector2(-1, 2)
-scale = Vector2(0.56363636, 0.39999953)
-texture = ExtResource("2_ckmsy")
+scale = Vector2(0.1, 0.071)
+texture = ExtResource("2_mxtbv")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=293411083]
 offset_left = -37.000004

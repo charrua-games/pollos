@@ -36,7 +36,7 @@ size_flags_vertical = 4
 texture = ExtResource("2_mjaro")
 
 [node name="PocionReferecia" parent="." unique_id=1215557556 instance=ExtResource("4_4f5qa")]
-position = Vector2(817, 108)
+position = Vector2(828, 100)
 
 [node name="Contenedor" type="Node2D" parent="." unique_id=11392968 node_paths=PackedStringArray("sprite")]
 position = Vector2(469, 490)

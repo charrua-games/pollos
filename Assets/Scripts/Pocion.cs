@@ -9,15 +9,19 @@ public partial class Pocion : Node2D
 	[Export] public Sprite2D sprite;
 	[Export] public Contenedor contenedor;
 
+	// NUEVO: texturas para estado bloqueado/desbloqueado
+	[Export] public Texture2D TexturaVacia { get; set; }
+	[Export] public Texture2D TexturaLlena { get; set; }
+
 	private Mezclador _mezclador;
-	private DesbloqueoPociones _desbloqueoPociones; // Nombre corregido
+	private DesbloqueoPociones _desbloqueoPociones;
 	private bool botonPresionado = false;
+	private bool _desbloqueada = true; // NUEVO: estado actual
 
 	private T BuscarNodo<T>(Node nodo) where T : Node
 	{
 		if (nodo is T resultado)
 			return resultado;
-
 		foreach (Node hijo in nodo.GetChildren())
 		{
 			T encontrado = BuscarNodo<T>(hijo);
@@ -31,7 +35,6 @@ public partial class Pocion : Node2D
 	{
 		// 1. Obtener el Autoload de forma segura
 		_desbloqueoPociones = GetNodeOrNull<DesbloqueoPociones>("/root/DesbloqueoPociones");
-
 		if (_desbloqueoPociones == null)
 		{
 			GD.PushWarning("No se encontró el autoload DesbloqueoPociones");
@@ -62,18 +65,15 @@ public partial class Pocion : Node2D
 		// 3. Comprobar estado de desbloqueo al final
 		if (_desbloqueoPociones != null && !string.IsNullOrEmpty(IdPocion))
 		{
-			if (!_desbloqueoPociones.EstaDesbloqueada(IdPocion))
-			{
-				// Si está bloqueada, la ocultamos y desactivamos el proceso
-				Visible = false;
-				SetProcess(false);
-			}
+			_desbloqueada = _desbloqueoPociones.EstaDesbloqueada(IdPocion);
+			ActualizarEstadoVisual();
 		}
 	}
 
 	public override void _Process(double delta)
 	{
-		if (botonPresionado && Input.IsKeyPressed(Key.Space))
+		// Solo permitimos mezclar si está desbloqueada
+		if (_desbloqueada && botonPresionado && Input.IsKeyPressed(Key.Space))
 		{
 			_mezclador.CambiarObjetivo(color);
 		}
@@ -81,6 +81,7 @@ public partial class Pocion : Node2D
 
 	private void OnBotonApretado()
 	{
+		if (!_desbloqueada) return; // NUEVO: ignorar clicks si está bloqueada
 		botonPresionado = true;
 	}
 
@@ -92,9 +93,28 @@ public partial class Pocion : Node2D
 
 	private void ActualizarColor()
 	{
-		if (sprite != null)
+		if (sprite != null && _desbloqueada)
 		{
 			sprite.Modulate = color;
+		}
+	}
+
+	// NUEVO: cambia la textura según el estado, en vez de Visible
+	private void ActualizarEstadoVisual()
+	{
+		if (sprite == null) return;
+
+		if (_desbloqueada)
+		{
+			if (TexturaLlena != null)
+				sprite.Texture = TexturaLlena;
+			sprite.Modulate = color;
+		}
+		else
+		{
+			if (TexturaVacia != null)
+				sprite.Texture = TexturaVacia;
+			sprite.Modulate = Colors.White; // sin tinte en el estado vacío
 		}
 	}
 
@@ -109,8 +129,8 @@ public partial class Pocion : Node2D
 		if (_desbloqueoPociones != null && !string.IsNullOrEmpty(IdPocion))
 		{
 			_desbloqueoPociones.Desbloquear(IdPocion);
-			Visible = true;
-			SetProcess(true); // Volvemos a activar el _Process al desbloquear
+			_desbloqueada = true;
+			ActualizarEstadoVisual(); // en vez de Visible = true / SetProcess(true)
 		}
 	}
 }
