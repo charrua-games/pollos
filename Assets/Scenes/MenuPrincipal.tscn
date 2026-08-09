@@ -1,17 +1,32 @@
 [gd_scene format=3 uid="uid://djwdxnbypgvk4"]
 
-[ext_resource type="Texture2D" uid="uid://gq8txi5n8jnq" path="res://Assets/Sprites/doggy.png" id="1_2nqgk"]
 [ext_resource type="Script" uid="uid://8fdwgwm77ux8" path="res://Assets/Scripts/BotonInicio.cs" id="1_5eu3p"]
+[ext_resource type="Texture2D" uid="uid://c2v73clsyyp76" path="res://Assets/Sprites/Title Screen.png" id="1_ijn4i"]
 [ext_resource type="Script" uid="uid://c1us5jcaf40tm" path="res://Assets/Scripts/BotonSalir.cs" id="2_ijn4i"]
 
 [node name="Node2D" type="Node2D" unique_id=1120546479]
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=233495496]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 31.0
+offset_right = 1923.0
+offset_bottom = 1111.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_ijn4i")
+
 [node name="BotonJugar" type="Button" parent="." unique_id=393831521]
 texture_filter = 1
 offset_left = 517.0
-offset_top = 307.0
+offset_top = 339.0
 offset_right = 650.0
-offset_bottom = 364.0
+offset_bottom = 396.0
 theme_override_font_sizes/font_size = 35
 text = "Jugar"
 script = ExtResource("1_5eu3p")
@@ -19,36 +34,21 @@ script = ExtResource("1_5eu3p")
 [node name="BotonOpciones" type="Button" parent="." unique_id=86565114]
 texture_filter = 1
 offset_left = 507.0
-offset_top = 390.0
+offset_top = 413.0
 offset_right = 672.0
-offset_bottom = 447.0
+offset_bottom = 470.0
 theme_override_font_sizes/font_size = 35
 text = "Opciones"
 
 [node name="BotonSalir" type="Button" parent="." unique_id=1601973922]
 texture_filter = 1
 offset_left = 518.0
-offset_top = 481.0
+offset_top = 488.0
 offset_right = 651.0
-offset_bottom = 538.0
+offset_bottom = 545.0
 theme_override_font_sizes/font_size = 35
 text = "Salir"
 script = ExtResource("2_ijn4i")
-
-[node name="Label" type="Label" parent="." unique_id=470997773]
-texture_filter = 1
-offset_left = 438.0
-offset_top = 177.0
-offset_right = 744.0
-offset_bottom = 235.0
-theme_override_font_sizes/font_size = 40
-text = "ALQUIMIOTERAPIA"
-
-[node name="Doggy" type="Sprite2D" parent="." unique_id=693129735]
-z_index = -1
-position = Vector2(774, 203)
-scale = Vector2(1, 0.7008114)
-texture = ExtResource("1_2nqgk")
 
 [connection signal="pressed" from="BotonJugar" to="BotonJugar" method="_on_pressed"]
 [connection signal="pressed" from="BotonSalir" to="BotonSalir" method="_on_pressed"]
