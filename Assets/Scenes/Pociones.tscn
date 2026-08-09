@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cxv7817yndq31" path="res://Assets/Scripts/Contenedor.cs" id="6_lbitj"]
 [ext_resource type="Script" uid="uid://bhj2j5pnagaqb" path="res://Assets/Scripts/CalcularPorcentajeAciertoColor.cs" id="7_ju54e"]
 [ext_resource type="Script" uid="uid://ba38y0nthkfgo" path="res://Assets/Scripts/ButtonTransitionScript.cs" id="9_caott"]
+[ext_resource type="Texture2D" uid="uid://xef2r1ondmh7" path="res://Assets/Sprites/Mortero.png" id="11_o0mai"]
 
 [node name="Pociones" type="Node2D" unique_id=1265537581 node_paths=PackedStringArray("pocionReferencia", "plantas", "evaluarButton", "contenedor", "calcularPuntaje")]
 position = Vector2(33, -15)
@@ -44,7 +45,7 @@ script = ExtResource("6_lbitj")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Contenedor" unique_id=1512632524]
-position = Vector2(-17.999998, 68.99999)
+position = Vector2(-44.999996, 53.999992)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("5_caott")
 
@@ -94,3 +95,20 @@ offset_bottom = 110.0
 text = "atras"
 script = ExtResource("9_caott")
 EscenaDestino = "uid://sbb6akun7lfp"
+
+[node name="PlantasButton" type="Button" parent="." unique_id=1834131233]
+z_index = 1
+offset_left = 923.0
+offset_top = 508.99994
+offset_right = 1214.0
+offset_bottom = 1209.0
+scale = Vector2(-0.60937595, 0.15780291)
+flat = true
+script = ExtResource("9_caott")
+EscenaDestino = "res://Assets/Scenes/Minijuegos/mini_juego_proc.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="PlantasButton" unique_id=1875133118]
+position = Vector2(146.05103, 367.54736)
+rotation = 3.1415927
+scale = Vector2(0.4983445, -2.0097861)
+texture = ExtResource("11_o0mai")
