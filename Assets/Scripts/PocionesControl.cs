@@ -31,8 +31,6 @@ public partial class PocionesControl : Node2D
 	private Color colorReferencia;
 
 	private Random _random = new Random();
-
-	// Indica si ya se puede comenzar el desafío
 	private bool puedeEvaluar = false;
 
 	public override void _Ready()
