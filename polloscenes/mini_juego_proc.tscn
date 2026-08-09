@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bntlvf7q34nsy"]
+
+[ext_resource type="Script" uid="uid://csjmpdqkio85f" path="res://Assets/Scripts/ControlRitmo.cs" id="1_j0lgb"]
+[ext_resource type="Script" uid="uid://cei3wli576r8e" path="res://Assets/Scripts/RelojRitmo.cs" id="2_1y4lj"]
+[ext_resource type="Texture2D" uid="uid://c7iue6eir368w" path="res://Assets/lineaplaceholder.png" id="3_chi5u"]
+[ext_resource type="Script" uid="uid://b1pjfn34dmvki" path="res://Assets/Scripts/SpawnerNotas.cs" id="5_0sa8n"]
+[ext_resource type="Script" uid="uid://dqrpm43bd8ugl" path="res://Assets/Scripts/VisualizadorNotas.cs" id="7_x51ob"]
+
+[node name="MiniJuegoProc" type="Node2D" unique_id=1458594322]
+
+[node name="ControlRitmo" type="Node" parent="." unique_id=2133299825]
+script = ExtResource("1_j0lgb")
+RutaRelojRitmo = NodePath("../RelojRitmo")
+VentanaHitSegundos = 0.45
+UsarVentanaAsimetrica = true
+VentanaAntesHitSegundos = 0.12
+VentanaDespuesHitSegundos = 0.35
+
+[node name="RelojRitmo" type="Node" parent="." unique_id=200281012]
+script = ExtResource("2_1y4lj")
+
+[node name="HitLine" type="Node2D" parent="." unique_id=1860012817]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="HitLine" unique_id=943209958]
+position = Vector2(600, 570.99994)
+scale = Vector2(0.403125, 0.29875)
+texture = ExtResource("3_chi5u")
+
+[node name="Carriles" type="Node2D" parent="." unique_id=1540370354]
+visible = false
+position = Vector2(578, 591)
+
+[node name="Carril 1" type="Node2D" parent="Carriles" unique_id=1284361707]
+position = Vector2(-264, -220)
+
+[node name="Carril 2" type="Node2D" parent="Carriles" unique_id=1425413699]
+position = Vector2(-72, -221)
+
+[node name="Carril 3" type="Node2D" parent="Carriles" unique_id=1604707892]
+position = Vector2(126, -224)
+
+[node name="Carril 4" type="Node2D" parent="Carriles" unique_id=1619114514]
+position = Vector2(274, -219)
+
+[node name="SpawnerNotas" type="Node2D" parent="." unique_id=1908449378]
+script = ExtResource("5_0sa8n")
+RutaControlRitmo = NodePath("../ControlRitmo")
+PresetActual = 3
+
+[node name="VisualizadorNotas" type="Node2D" parent="." unique_id=888150282]
+script = ExtResource("7_x51ob")
+RutaControlRitmo = NodePath("../ControlRitmo")
+UsarYHitDesdeHitLine = false
+XCarril1 = 315.0
+XCarril4 = 870.0
+YHit = 571.0
+LeadTimeSegundos = 3.5
