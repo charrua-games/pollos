@@ -1,7 +1,9 @@
 using Godot;
+using System.Collections.Generic;
 
 public partial class VisualizadorNotas : Node2D
 {
+   [Export] public PackedScene EscenaNota { get; set; }
    [Export] public NodePath RutaControlRitmo { get; set; }
    [Export] public NodePath RutaHitLine { get; set; }
    [Export] public NodePath RutaCarriles { get; set; }
@@ -22,9 +24,6 @@ public partial class VisualizadorNotas : Node2D
    [Export] public float YHit { get; set; } = 620f;
    [Export] public double LeadTimeSegundos { get; set; } = 1.5;
 
-   [Export] public float RadioNota { get; set; } = 12f;
-   [Export] public Color ColorNota { get; set; } = new Color(0.95f, 0.85f, 0.20f, 1f);
-   [Export] public Color ColorNotaActual { get; set; } = new Color(0.30f, 0.95f, 0.40f, 1f);
    [Export] public bool OcultarNotasConsumidas { get; set; } = true;
 
    [Export] public bool DibujarHitLine { get; set; } = true;
@@ -32,6 +31,7 @@ public partial class VisualizadorNotas : Node2D
    [Export] public Color ColorHitLine { get; set; } = new Color(0.85f, 0.15f, 0.15f, 1f);
 
    private ControlRitmo _controlRitmo;
+   private readonly Dictionary<Nota, NotaVisual> _visuales = new();
 
    public override void _Ready()
    {
@@ -81,6 +81,7 @@ public partial class VisualizadorNotas : Node2D
    {
       if (_controlRitmo != null)
       {
+         ActualizarVisualesNotas();
          QueueRedraw();
       }
    }
@@ -98,36 +99,84 @@ public partial class VisualizadorNotas : Node2D
          Vector2 hasta = new(XCarril4 + 40f, YHit);
          DrawLine(desde, hasta, ColorHitLine, 3f);
       }
+   }
+
+   private void ActualizarVisualesNotas()
+   {
+      if (EscenaNota == null)
+      {
+         GD.PushError("VisualizadorNotas requiere EscenaNota asignada.");
+         return;
+      }
 
       var notas = _controlRitmo.Notas;
-      if (notas.Count == 0)
+      var vistas = new HashSet<Nota>();
+
+      if (notas.Count > 0)
+      {
+         int indiceActual = _controlRitmo.IndiceSiguiente;
+         double tiempoActual = _controlRitmo.ObtenerTiempoActualSegundos();
+         float velocidadY = ObtenerVelocidadY();
+
+         for (int i = 0; i < notas.Count; i++)
+         {
+            if (OcultarNotasConsumidas && i < indiceActual)
+            {
+               continue;
+            }
+
+            Nota nota = notas[i];
+            double tiempoRestante = nota.TiempoHitSegundos - tiempoActual;
+            float y = YHit - (float)(tiempoRestante * velocidadY);
+
+            if (y < YSpawn - 120f || y > YHit + 180f)
+            {
+               continue;
+            }
+
+            float x = ObtenerXCarrilPorAccion(nota.AccionHit);
+
+            if (!_visuales.TryGetValue(nota, out NotaVisual visual))
+            {
+               visual = EscenaNota.Instantiate<NotaVisual>();
+               AddChild(visual);
+               visual.Configurar(ObtenerIndiceCarrilPorAccion(nota.AccionHit));
+               _visuales[nota] = visual;
+            }
+
+            visual.Position = new Vector2(x, y);
+            visual.EstablecerResaltada(i == indiceActual);
+            vistas.Add(nota);
+         }
+      }
+
+      LimpiarVisualesNoVistos(vistas);
+   }
+
+   private void LimpiarVisualesNoVistos(HashSet<Nota> vistas)
+   {
+      List<Nota> aQuitar = null;
+
+      foreach (KeyValuePair<Nota, NotaVisual> par in _visuales)
+      {
+         if (vistas.Contains(par.Key))
+         {
+            continue;
+         }
+
+         par.Value.QueueFree();
+         aQuitar ??= new List<Nota>();
+         aQuitar.Add(par.Key);
+      }
+
+      if (aQuitar == null)
       {
          return;
       }
 
-      int indiceActual = _controlRitmo.IndiceSiguiente;
-      double tiempoActual = _controlRitmo.ObtenerTiempoActualSegundos();
-      float velocidadY = ObtenerVelocidadY();
-
-      for (int i = 0; i < notas.Count; i++)
+      foreach (Nota nota in aQuitar)
       {
-         if (OcultarNotasConsumidas && i < indiceActual)
-         {
-            continue;
-         }
-
-         Nota nota = notas[i];
-         float x = ObtenerXCarrilPorAccion(nota.AccionHit);
-         double tiempoRestante = nota.TiempoHitSegundos - tiempoActual;
-         float y = YHit - (float)(tiempoRestante * velocidadY);
-
-         if (y < YSpawn - 120f || y > YHit + 180f)
-         {
-            continue;
-         }
-
-         Color color = i == indiceActual ? ColorNotaActual : ColorNota;
-         DrawCircle(new Vector2(x, y), RadioNota, color);
+         _visuales.Remove(nota);
       }
    }
 
@@ -148,5 +197,14 @@ public partial class VisualizadorNotas : Node2D
       if (accion == AccionCarril3) return XCarril3;
       if (accion == AccionCarril4) return XCarril4;
       return XCarril1;
+   }
+
+   private int ObtenerIndiceCarrilPorAccion(string accion)
+   {
+      if (accion == AccionCarril1) return 0;
+      if (accion == AccionCarril2) return 1;
+      if (accion == AccionCarril3) return 2;
+      if (accion == AccionCarril4) return 3;
+      return 0;
    }
 }

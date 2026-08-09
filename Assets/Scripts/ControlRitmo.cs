@@ -23,11 +23,16 @@ public partial class ControlRitmo : Node
    [Export] public string AccionTeclaD { get; set; } = "hit_d";
    [Export] public string AccionTeclaF { get; set; } = "hit_f";
 
+   [Export] public NodePath RutaReproductorAciertos { get; set; }
+   [Export] public AudioStream[] SonidosAcierto { get; set; }
+
    private readonly List<Nota> _notas = new();
    private readonly HashSet<string> _accionesHit = new();
    private readonly HashSet<string> _accionesFaltantesReportadas = new();
+   private readonly Random _random = new();
    private int _indiceSiguiente = 0;
    private RelojRitmo _reloj;
+   private AudioStreamPlayer _reproductorAciertos;
    private bool _activo;
    private bool _teclaAPresionada;
    private bool _teclaSPresionada;
@@ -56,6 +61,22 @@ public partial class ControlRitmo : Node
       }
 
       _reloj = GetNode<RelojRitmo>(RutaRelojRitmo);
+
+      if (RutaReproductorAciertos != null && !RutaReproductorAciertos.IsEmpty)
+      {
+         _reproductorAciertos = GetNodeOrNull<AudioStreamPlayer>(RutaReproductorAciertos);
+      }
+   }
+
+   private void ReproducirSonidoAcierto()
+   {
+      if (_reproductorAciertos == null || SonidosAcierto == null || SonidosAcierto.Length == 0)
+      {
+         return;
+      }
+
+      _reproductorAciertos.Stream = SonidosAcierto[_random.Next(SonidosAcierto.Length)];
+      _reproductorAciertos.Play();
    }
 
    public override void _PhysicsProcess(double delta)
@@ -210,6 +231,8 @@ public partial class ControlRitmo : Node
          return;
       }
 
+      ReproducirSonidoAcierto();
+
       _indiceSiguiente++;
 
       if (_indiceSiguiente >= _notas.Count)
@@ -337,6 +360,7 @@ public partial class ControlRitmo : Node
       if (accion == esperada.AccionHit)
       {
          ProcesarInput(accion);
+
       }
       else
       {

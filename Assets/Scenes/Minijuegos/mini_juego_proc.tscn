@@ -5,6 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://c7iue6eir368w" path="res://Assets/Sprites/lineaplaceholder.png" id="3_chi5u"]
 [ext_resource type="Script" uid="uid://b1pjfn34dmvki" path="res://Assets/Scripts/SpawnerNotas.cs" id="5_0sa8n"]
 [ext_resource type="Script" uid="uid://dqrpm43bd8ugl" path="res://Assets/Scripts/VisualizadorNotas.cs" id="7_x51ob"]
+[ext_resource type="PackedScene" uid="uid://do8hkoq7gq03g" path="res://Assets/Scenes/Minijuegos/Nota.tscn" id="8_notasc"]
+[ext_resource type="AudioStream" uid="uid://jbnd72k56jem" path="res://Assets/SFX/note_01.ogg" id="9_note01"]
+[ext_resource type="AudioStream" uid="uid://cipbeggkt3hkg" path="res://Assets/SFX/note_02.ogg" id="10_note02"]
+[ext_resource type="AudioStream" uid="uid://cvyn4x2raf6am" path="res://Assets/SFX/note_03.ogg" id="11_note03"]
+[ext_resource type="AudioStream" uid="uid://bqs11bvyfln6k" path="res://Assets/SFX/note_04.ogg" id="12_note04"]
 
 [node name="MiniJuegoProc" type="Node2D" unique_id=1458594322]
 
@@ -13,6 +18,10 @@ script = ExtResource("1_j0lgb")
 RutaRelojRitmo = NodePath("../RelojRitmo")
 VentanaHitSegundos = 0.45
 VentanaDespuesHitSegundos = 0.35
+RutaReproductorAciertos = NodePath("../ReproductorAciertos")
+SonidosAcierto = Array[AudioStream]([ExtResource("9_note01"), ExtResource("10_note02"), ExtResource("11_note03"), ExtResource("12_note04")])
+
+[node name="ReproductorAciertos" type="AudioStreamPlayer" parent="." unique_id=3218456701]
 
 [node name="RelojRitmo" type="Node" parent="." unique_id=200281012]
 script = ExtResource("2_1y4lj")
@@ -48,7 +57,10 @@ RepeticionesPreset = 5
 
 [node name="VisualizadorNotas" type="Node2D" parent="." unique_id=888150282]
 script = ExtResource("7_x51ob")
+EscenaNota = ExtResource("8_notasc")
 RutaControlRitmo = NodePath("../ControlRitmo")
+RutaHitLine = NodePath("../HitLine")
+RutaCarriles = NodePath("../Carriles")
 UsarYHitDesdeHitLine = false
 YHit = 571.0
 LeadTimeSegundos = 3.5
