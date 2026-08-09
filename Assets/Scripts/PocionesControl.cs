@@ -1,3 +1,4 @@
+
 using Godot;
 using System;
 
@@ -16,7 +17,10 @@ public partial class PocionesControl : Node2D
 	private Contenedor contenedor { get; set; }
 
 	[Export]
-	private CalcularPorcentajeAciertoColor calcularPuntaje { get; set; } // antes: Node2D CalcularPuntaje
+	private CalcularPorcentajeAciertoColor calcularPuntaje { get; set; }
+
+	[Export]
+	private Label ganasteLabel { get; set; }
 
 	private Color colorReferencia;
 
@@ -24,10 +28,14 @@ public partial class PocionesControl : Node2D
 
 	public override void _Ready()
 	{
+		// Ocultar el mensaje al comenzar
+		ganasteLabel.Visible = false;
+
 		PrepararPlantas();
 		CrearColorReferencia();
 
 		GD.Print("Color de referencia: ", colorReferencia);
+
 		evaluarButton.ButtonDown += OnBotonApretado;
 	}
 
@@ -45,7 +53,8 @@ public partial class PocionesControl : Node2D
 		colorReferencia = Color.FromHsv(
 			tono,
 			1.0f,
-			1.0f);
+			1.0f
+		);
 
 		pocionReferencia.CambiarColor(colorReferencia);
 	}
@@ -71,8 +80,24 @@ public partial class PocionesControl : Node2D
 			return;
 		}
 
-		double porcentajeAcierto = calcularPuntaje.EvaluarColor(colorContenedor, colorReferenciaActual);
+		double porcentajeAcierto =
+			calcularPuntaje.EvaluarColor(
+				colorContenedor,
+				colorReferenciaActual
+			);
 
 		GD.Print("Porcentaje de acierto: ", porcentajeAcierto, "%");
+
+		if (porcentajeAcierto < 95)
+		{
+			contenedor.RecibirColor(Colors.Black);
+
+			ganasteLabel.Visible = false;
+		}
+		else
+		{
+			
+			ganasteLabel.Visible = true;
+		}
 	}
 }
