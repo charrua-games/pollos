@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://brf6wwg1lvbpn" path="res://Assets/Sprites/Flecha.png" id="10_ckr0t"]
 [ext_resource type="Texture2D" uid="uid://xef2r1ondmh7" path="res://Assets/Sprites/Mortero.png" id="11_o0mai"]
 
-[node name="Pociones" type="Node2D" unique_id=1265537581 node_paths=PackedStringArray("pocionReferencia", "plantas", "evaluarButton", "contenedor", "calcularPuntaje", "ganasteLabel")]
+[node name="Pociones" type="Node2D" unique_id=1265537581 node_paths=PackedStringArray("pocionReferencia", "plantas", "evaluarButton", "contenedor", "calcularPuntaje", "ganasteLabel", "PerdisteLabel")]
 position = Vector2(33, -15)
 script = ExtResource("1_a7roa")
 pocionReferencia = NodePath("PocionReferecia")
@@ -22,6 +22,7 @@ evaluarButton = NodePath("Comparar")
 contenedor = NodePath("Contenedor")
 calcularPuntaje = NodePath("CalcularPorcentaje")
 ganasteLabel = NodePath("Label")
+PerdisteLabel = NodePath("Label2")
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=353311941]
 anchors_preset = 15
