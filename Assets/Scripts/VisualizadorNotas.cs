@@ -4,6 +4,7 @@ public partial class VisualizadorNotas : Node2D
 {
    [Export] public NodePath RutaControlRitmo { get; set; }
    [Export] public NodePath RutaHitLine { get; set; }
+   [Export] public NodePath RutaCarriles { get; set; }
    [Export] public bool UsarYHitDesdeHitLine { get; set; } = true;
    [Export] public float OffsetYHit { get; set; } = 0f;
 
@@ -56,6 +57,22 @@ public partial class VisualizadorNotas : Node2D
          else
          {
             GD.PushWarning("VisualizadorNotas no pudo resolver RutaHitLine; se mantiene YHit manual.");
+         }
+      }
+
+      if (RutaCarriles != null && !RutaCarriles.IsEmpty)
+      {
+         Node2D carriles = GetNodeOrNull<Node2D>(RutaCarriles);
+         if (carriles != null && carriles.GetChildCount() >= 4)
+         {
+            XCarril1 = ((Node2D)carriles.GetChild(0)).GlobalPosition.X;
+            XCarril2 = ((Node2D)carriles.GetChild(1)).GlobalPosition.X;
+            XCarril3 = ((Node2D)carriles.GetChild(2)).GlobalPosition.X;
+            XCarril4 = ((Node2D)carriles.GetChild(3)).GlobalPosition.X;
+         }
+         else
+         {
+            GD.PushWarning("VisualizadorNotas no pudo resolver RutaCarriles; se mantienen XCarril manuales.");
          }
       }
    }
