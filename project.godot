@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 TransitionScene="*uid://cvocsr63gs4rr"
 DesbloqueoPociones="*uid://b7it16xpnyn2b"
+Bgm="*uid://cs4yhf02coqxw"
 
 [display]
 
