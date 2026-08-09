@@ -13,8 +13,8 @@ TexturaVacia = ExtResource("2_mxtbv")
 TexturaLlena = ExtResource("3_ivycy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1509553239]
-position = Vector2(-1, 2)
-scale = Vector2(0.1, 0.071)
+position = Vector2(-12, -11.999999)
+scale = Vector2(0.2, 0.142)
 texture = ExtResource("2_mxtbv")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=293411083]

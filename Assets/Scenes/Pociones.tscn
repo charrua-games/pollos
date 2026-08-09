@@ -49,17 +49,17 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("5_caott")
 
 [node name="Planta2" parent="." unique_id=653259467 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(266, 319)
+position = Vector2(266, 297)
 IdPocion = "Rojo"
 contenedor = NodePath("../Contenedor")
 
 [node name="Planta3" parent="." unique_id=2134906103 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(423, 316)
+position = Vector2(423, 294)
 IdPocion = "Azul"
 contenedor = NodePath("../Contenedor")
 
 [node name="Planta4" parent="." unique_id=1065968970 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(574, 314)
+position = Vector2(574, 292)
 IdPocion = "Amarillo"
 contenedor = NodePath("../Contenedor")
 
