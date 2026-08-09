@@ -9,11 +9,11 @@ public partial class SpawnerNotas : Node
 
    public enum RitmoPreset
    {
-	  Manual = 0,
-	  Basico4x4 = 1,
-	  Alternado = 2,
-	  Escalera = 3,
-	  SincopaSuave = 4
+      Manual = 0,
+      Basico4x4 = 1,
+      Alternado = 2,
+      Escalera = 3,
+      SincopaSuave = 4
    }
 
    [Export] public NodePath RutaControlRitmo { get; set; }
@@ -32,151 +32,151 @@ public partial class SpawnerNotas : Node
 
    public override void _Ready()
    {
-	  if (RutaControlRitmo == null || RutaControlRitmo.IsEmpty)
-	  {
-		 GD.PushError("SpawnerNotas requiere RutaControlRitmo asignada.");
-		 return;
-	  }
+      if (RutaControlRitmo == null || RutaControlRitmo.IsEmpty)
+      {
+         GD.PushError("SpawnerNotas requiere RutaControlRitmo asignada.");
+         return;
+      }
 
-	  _controlRitmo = GetNode<ControlRitmo>(RutaControlRitmo);
-	  _controlRitmo.ProcesamientoFinalizado += OnProcesamientoFinalizado;
-	  NormalizarAccionesSegunInputMap();
-	  List<Nota> notas = PresetActual == RitmoPreset.Manual ? GenerarNotasDesdeManual() : GenerarNotasDesdePreset();
+      _controlRitmo = GetNode<ControlRitmo>(RutaControlRitmo);
+      _controlRitmo.ProcesamientoFinalizado += OnProcesamientoFinalizado;
+      NormalizarAccionesSegunInputMap();
+      List<Nota> notas = PresetActual == RitmoPreset.Manual ? GenerarNotasDesdeManual() : GenerarNotasDesdePreset();
 
-	  if (notas.Count == 0)
-	  {
-		 GD.PushWarning("SpawnerNotas no encontro notas para cargar.");
-	  }
+      if (notas.Count == 0)
+      {
+         GD.PushWarning("SpawnerNotas no encontro notas para cargar.");
+      }
 
-	  _controlRitmo.CargarNotas(notas);
+      _controlRitmo.CargarNotas(notas);
 
-	  if (AutoIniciarMinijuego)
-	  {
-		 _controlRitmo.IniciarMinijuego();
-	  }
+      if (AutoIniciarMinijuego)
+      {
+         _controlRitmo.IniciarMinijuego();
+      }
    }
 
    private void OnProcesamientoFinalizado(bool exito)
    {
-	  EmitSignal(SignalName.NotasFinalizadas, exito);
+      EmitSignal(SignalName.NotasFinalizadas, exito);
    }
 
    private List<Nota> GenerarNotasDesdeManual()
    {
-	  List<Nota> notas = new();
-	  if (string.IsNullOrWhiteSpace(PatronManualAcciones))
-	  {
-		 return notas;
-	  }
+      List<Nota> notas = new();
+      if (string.IsNullOrWhiteSpace(PatronManualAcciones))
+      {
+         return notas;
+      }
 
-	  string[] tokens = PatronManualAcciones.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-	  double tiempo = TiempoInicioSegundos;
-	  foreach (string token in tokens)
-	  {
-		 Nota nota = new();
-		 nota.Configurar(token, tiempo);
-		 notas.Add(nota);
-		 tiempo += IntervaloBaseSegundos;
-	  }
+      string[] tokens = PatronManualAcciones.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+      double tiempo = TiempoInicioSegundos;
+      foreach (string token in tokens)
+      {
+         Nota nota = new();
+         nota.Configurar(token, tiempo);
+         notas.Add(nota);
+         tiempo += IntervaloBaseSegundos;
+      }
 
-	  return notas;
+      return notas;
    }
 
    private List<Nota> GenerarNotasDesdePreset()
    {
-	  List<Nota> notas = new();
-	  List<(int carril, double factorIntervalo)> pasos = ObtenerPasosDelPreset(PresetActual);
-	  if (pasos.Count == 0)
-	  {
-		 return notas;
-	  }
+      List<Nota> notas = new();
+      List<(int carril, double factorIntervalo)> pasos = ObtenerPasosDelPreset(PresetActual);
+      if (pasos.Count == 0)
+      {
+         return notas;
+      }
 
-	  int repeticiones = RepeticionesPreset < 1 ? 1 : RepeticionesPreset;
-	  double tiempo = TiempoInicioSegundos;
+      int repeticiones = RepeticionesPreset < 1 ? 1 : RepeticionesPreset;
+      double tiempo = TiempoInicioSegundos;
 
-	  for (int r = 0; r < repeticiones; r++)
-	  {
-		 foreach ((int carril, double factorIntervalo) paso in pasos)
-		 {
-			string accion = ObtenerAccionPorCarril(paso.carril);
-			Nota nota = new();
-			nota.Configurar(accion, tiempo);
-			notas.Add(nota);
+      for (int r = 0; r < repeticiones; r++)
+      {
+         foreach ((int carril, double factorIntervalo) paso in pasos)
+         {
+            string accion = ObtenerAccionPorCarril(paso.carril);
+            Nota nota = new();
+            nota.Configurar(accion, tiempo);
+            notas.Add(nota);
 
-			tiempo += IntervaloBaseSegundos * paso.factorIntervalo;
-		 }
-	  }
+            tiempo += IntervaloBaseSegundos * paso.factorIntervalo;
+         }
+      }
 
-	  return notas;
+      return notas;
    }
 
    private List<(int carril, double factorIntervalo)> ObtenerPasosDelPreset(RitmoPreset preset)
    {
-	  return preset switch
-	  {
-		 RitmoPreset.Basico4x4 => new List<(int, double)>
-		 {
-			(1, 1.0), (2, 1.0), (3, 1.0), (4, 1.0),
-			(1, 1.0), (2, 1.0), (3, 1.0), (4, 1.0)
-		 },
-		 RitmoPreset.Alternado => new List<(int, double)>
-		 {
-			(1, 1.0), (3, 1.0), (2, 1.0), (4, 1.0),
-			(1, 1.0), (3, 1.0), (2, 1.0), (4, 1.0)
-		 },
-		 RitmoPreset.Escalera => new List<(int, double)>
-		 {
-			(1, 1.0), (2, 1.0), (3, 1.0), (4, 1.0),
-			(4, 1.0), (3, 1.0), (2, 1.0), (1, 1.0)
-		 },
-		 RitmoPreset.SincopaSuave => new List<(int, double)>
-		 {
-			(1, 1.0), (2, 0.5), (3, 1.5), (4, 1.0),
-			(2, 0.5), (1, 1.0), (4, 0.5), (3, 1.5)
-		 },
-		 _ => new List<(int, double)>()
-	  };
+      return preset switch
+      {
+         RitmoPreset.Basico4x4 => new List<(int, double)>
+       {
+         (1, 1.0), (2, 1.0), (3, 1.0), (4, 1.0),
+         (1, 1.0), (2, 1.0), (3, 1.0), (4, 1.0)
+       },
+         RitmoPreset.Alternado => new List<(int, double)>
+       {
+         (1, 1.0), (3, 1.0), (2, 1.0), (4, 1.0),
+         (1, 1.0), (3, 1.0), (2, 1.0), (4, 1.0)
+       },
+         RitmoPreset.Escalera => new List<(int, double)>
+       {
+         (1, 1.0), (2, 1.0), (3, 1.0), (4, 1.0),
+         (4, 1.0), (3, 1.0), (2, 1.0), (1, 1.0)
+       },
+         RitmoPreset.SincopaSuave => new List<(int, double)>
+       {
+         (1, 1.0), (2, 0.5), (3, 1.5), (4, 1.0),
+         (2, 0.5), (1, 1.0), (4, 0.5), (3, 1.5)
+       },
+         _ => new List<(int, double)>()
+      };
    }
 
    private string ObtenerAccionPorCarril(int carril)
    {
-	  return carril switch
-	  {
-		 1 => AccionCarril1,
-		 2 => AccionCarril2,
-		 3 => AccionCarril3,
-		 4 => AccionCarril4,
-		 _ => AccionCarril1
-	  };
+      return carril switch
+      {
+         1 => AccionCarril1,
+         2 => AccionCarril2,
+         3 => AccionCarril3,
+         4 => AccionCarril4,
+         _ => AccionCarril1
+      };
    }
 
    private void NormalizarAccionesSegunInputMap()
    {
-	  AccionCarril1 = ResolverAccion("Carril1", AccionCarril1, "hit_a", "hit_1");
-	  AccionCarril2 = ResolverAccion("Carril2", AccionCarril2, "hit_s", "hit_2");
-	  AccionCarril3 = ResolverAccion("Carril3", AccionCarril3, "hit_d", "hit_3");
-	  AccionCarril4 = ResolverAccion("Carril4", AccionCarril4, "hit_f", "hit_4");
+      AccionCarril1 = ResolverAccion("Carril1", AccionCarril1, "hit_a", "hit_1");
+      AccionCarril2 = ResolverAccion("Carril2", AccionCarril2, "hit_s", "hit_2");
+      AccionCarril3 = ResolverAccion("Carril3", AccionCarril3, "hit_d", "hit_3");
+      AccionCarril4 = ResolverAccion("Carril4", AccionCarril4, "hit_f", "hit_4");
    }
 
    private static string ResolverAccion(string etiqueta, string configurada, string preferida, string legacy)
    {
-	  if (!string.IsNullOrWhiteSpace(configurada) && InputMap.HasAction(configurada))
-	  {
-		 return configurada;
-	  }
+      if (!string.IsNullOrWhiteSpace(configurada) && InputMap.HasAction(configurada))
+      {
+         return configurada;
+      }
 
-	  if (InputMap.HasAction(preferida))
-	  {
-		 GD.PushWarning($"SpawnerNotas ajusto {etiqueta} a '{preferida}' porque '{configurada}' no existe en InputMap.");
-		 return preferida;
-	  }
+      if (InputMap.HasAction(preferida))
+      {
+         GD.PushWarning($"SpawnerNotas ajusto {etiqueta} a '{preferida}' porque '{configurada}' no existe en InputMap.");
+         return preferida;
+      }
 
-	  if (InputMap.HasAction(legacy))
-	  {
-		 GD.PushWarning($"SpawnerNotas ajusto {etiqueta} a '{legacy}' porque '{configurada}' no existe en InputMap.");
-		 return legacy;
-	  }
+      if (InputMap.HasAction(legacy))
+      {
+         GD.PushWarning($"SpawnerNotas ajusto {etiqueta} a '{legacy}' porque '{configurada}' no existe en InputMap.");
+         return legacy;
+      }
 
-	  return configurada;
+      return configurada;
    }
 }

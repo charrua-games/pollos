@@ -361,7 +361,7 @@ z_index = -1
 position = Vector2(547, 197)
 scale = Vector2(0.8442708, 0.825)
 sprite_frames = SubResource("SpriteFrames_o838b")
-frame_progress = 0.38168034
+frame_progress = 0.9673873
 
 [node name="ControladorAnimaciones" type="Node2D" parent="." unique_id=1712217576]
 script = ExtResource("6_dea4y")
