@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://sbb6akun7lfp"]
 
 [ext_resource type="Script" uid="uid://ba38y0nthkfgo" path="res://Assets/Scripts/ButtonTransitionScript.cs" id="1_5ti5g"]
-[ext_resource type="PackedScene" uid="uid://d4jotbw6vphlo" path="res://Assets/Scenes/MezclarDebug.tscn" id="2_7shk7"]
+[ext_resource type="PackedScene" uid="uid://dnr8mh71cthc1" path="res://Assets/Scenes/Pociones.tscn" id="2_7shk7"]
 [ext_resource type="PackedScene" uid="uid://bntlvf7q34nsy" path="res://Assets/Scenes/Minijuegos/mini_juego_proc.tscn" id="3_7shk7"]
 
 [node name="Overworld" type="Node2D" unique_id=1093189996]

@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://bhj2j5pnagaqb" path="res://Assets/Scripts/CalcularPorcentajeAciertoColor.cs" id="7_ju54e"]
 
 [node name="Pociones" type="Node2D" unique_id=1265537581 node_paths=PackedStringArray("pocionReferencia", "plantas", "evaluarButton", "contenedor", "calcularPuntaje")]
-position = Vector2(132, 24)
 script = ExtResource("1_a7roa")
 pocionReferencia = NodePath("PocionReferecia")
 plantas = [NodePath("Planta"), NodePath("Planta2"), NodePath("Planta3"), NodePath("Planta4")]
@@ -18,10 +17,10 @@ contenedor = NodePath("Contenedor")
 calcularPuntaje = NodePath("CalcularPorcentaje")
 
 [node name="PocionReferecia" parent="." unique_id=1215557556 instance=ExtResource("4_4f5qa")]
-position = Vector2(896, 73)
+position = Vector2(995, 67)
 
 [node name="Contenedor" type="Node2D" parent="." unique_id=11392968 node_paths=PackedStringArray("sprite")]
-position = Vector2(271, 325)
+position = Vector2(370, 319)
 script = ExtResource("6_lbitj")
 sprite = NodePath("Sprite2D")
 
@@ -29,30 +28,31 @@ sprite = NodePath("Sprite2D")
 texture = ExtResource("1_4ta2c")
 
 [node name="Planta" parent="." unique_id=427452167 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(33, 506)
+position = Vector2(132, 500)
 contenedor = NodePath("../Contenedor")
 
 [node name="Planta2" parent="." unique_id=653259467 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(141, 506)
+position = Vector2(240, 500)
 contenedor = NodePath("../Contenedor")
 
 [node name="Planta3" parent="." unique_id=2134906103 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(264, 504)
+position = Vector2(363, 498)
 contenedor = NodePath("../Contenedor")
 
 [node name="Planta4" parent="." unique_id=1065968970 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
-position = Vector2(380, 506)
+position = Vector2(479, 500)
 contenedor = NodePath("../Contenedor")
 
 [node name="Mezclador" type="Node2D" parent="." unique_id=2116288329 node_paths=PackedStringArray("sprite")]
 script = ExtResource("6_ju54e")
 sprite = NodePath("../Contenedor/Sprite2D")
+step = 0.124
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1795330831]
-offset_left = 725.0
-offset_top = 436.0
-offset_right = 853.0
-offset_bottom = 564.0
+offset_left = 824.0
+offset_top = 430.0
+offset_right = 952.0
+offset_bottom = 558.0
 scale = Vector2(1, 0.64)
 texture_normal = ExtResource("1_4ta2c")
 
