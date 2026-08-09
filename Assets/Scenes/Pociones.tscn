@@ -108,7 +108,7 @@ script = ExtResource("9_caott")
 EscenaDestino = "res://Assets/Scenes/Minijuegos/mini_juego_proc.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="PlantasButton" unique_id=1875133118]
-position = Vector2(146.05103, 367.54736)
+position = Vector2(141.12796, 386.5584)
 rotation = 3.1415927
 scale = Vector2(0.4983445, -2.0097861)
 texture = ExtResource("11_o0mai")
