@@ -21,6 +21,8 @@ public partial class PocionesControl : Node2D
 
 	[Export]
 	private Label ganasteLabel { get; set; }
+	[Export]
+	private Label PerdisteLabel { get; set; }
 
 	private Color colorReferencia;
 
@@ -28,8 +30,8 @@ public partial class PocionesControl : Node2D
 
 	public override void _Ready()
 	{
-		// Ocultar el mensaje al comenzar
 		ganasteLabel.Visible = false;
+		PerdisteLabel.Visible = false;
 
 		PrepararPlantas();
 		CrearColorReferencia();
@@ -91,6 +93,7 @@ public partial class PocionesControl : Node2D
 		if (porcentajeAcierto < 95)
 		{
 			contenedor.RecibirColor(Colors.Black);
+			PerdisteLabel.Visible = true;
 
 			ganasteLabel.Visible = false;
 		}
@@ -98,6 +101,8 @@ public partial class PocionesControl : Node2D
 		{
 			
 			ganasteLabel.Visible = true;
+			PerdisteLabel.Visible = false;
+
 		}
 	}
 }

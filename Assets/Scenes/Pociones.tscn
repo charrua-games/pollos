@@ -122,3 +122,12 @@ offset_bottom = 322.0
 scale = Vector2(1.1895173, 1.435145)
 theme_override_font_sizes/font_size = 60
 text = "Acertaste el color"
+
+[node name="Label2" type="Label" parent="." unique_id=1441902203]
+offset_left = 462.00006
+offset_top = 235.00002
+offset_right = 966.0
+offset_bottom = 318.0
+scale = Vector2(1.1895173, 1.435145)
+theme_override_font_sizes/font_size = 60
+text = "Perdiste"
