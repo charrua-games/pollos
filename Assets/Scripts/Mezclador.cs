@@ -3,62 +3,79 @@ using System;
 
 public partial class Mezclador : Node2D
 {
-	private float posicionActual;
-	private Color colorInicial;
-	[Export]
-	private Color colorFinal = Color.Color8(0, 0, 125);
-	[Export(PropertyHint.Range, "0,1")]
-	public float step { get; set; } = 0.05f;
+	private Color colorActual;
+	private Color colorObjetivo;
+	private bool activo = false;
+
 	[Export]
 	public Sprite2D sprite;
 
+	// Qué tan rápido se acerca el color actual al objetivo mientras se mantiene el click.
+	[Export(PropertyHint.Range, "0,1")]
+	public float step { get; set; } = 0.5f; // velocidad de mezcla (por segundo)
+
 	public override void _Ready()
 	{
-		sprite = GetNode<Sprite2D>("TestCube");
+		if (sprite == null)
+		{
+			GD.PrintErr("Mezclador: Sprite no asignado.");
+			return;
+		}
+
+		if (sprite.Texture == null)
+		{
+			GD.PrintErr("Mezclador: El Sprite no tiene textura.");
+			return;
+		}
+
 		Image img = sprite.Texture.GetImage();
+
 		if (img.IsCompressed())
 		{
 			img.Decompress();
 		}
 
 		Vector2I size = img.GetSize();
-		Color sample = img.GetPixel(size.X / 2, size.Y / 2);
-		colorInicial = Color.FromHsv(sample.H, 1f, 1f);
-		sprite.Modulate = colorInicial;
 
-		posicionActual = colorInicial.H;
+		Color sample = img.GetPixel(
+			size.X / 2,
+			size.Y / 2
+		);
+
+		colorActual = sample;
+		colorObjetivo = sample;
+
+		sprite.Modulate = colorActual;
 	}
 
 	public override void _Process(double delta)
 	{
-
-		if (!Input.IsMouseButtonPressed(MouseButton.Left))
+		if (!activo)
 		{
 			return;
 		}
 
-		var direccion = Mezclar(colorInicial, colorFinal, delta);
-		GD.Print("[?] posicionActual vieja ", posicionActual);
-		posicionActual += step * direccion * (float)delta;
-
-		posicionActual = Mathf.PosMod(posicionActual, 1);
-		GD.Print("[?] posicionActual nueva ", posicionActual);
-
-		colorInicial.H = posicionActual;
-		sprite.Modulate = colorInicial;
+		// Se acerca gradualmente al color de la poción que se está manteniendo presionada.
+		// Como se detiene al soltar (no llega necesariamente al 100%), el resultado
+		// queda como una mezcla parcial, y la próxima poción se combina sobre eso.
+		colorActual = colorActual.Lerp(colorObjetivo, step * (float)delta);
+		sprite.Modulate = colorActual;
 	}
 
-
-	public float Mezclar(Color color1, Color color2, double delta)
+	// Se llama en ButtonDown: fija hacia qué color mezclar y arranca el avance.
+	public void CambiarObjetivo(Color nuevoColor)
 	{
-		double color1Rad = color1.H * 2 * Math.PI;
-		GD.Print("[?] Color1Rad = ", color1Rad);
-		double color2Rad = color2.H * 2 * Math.PI;
-		GD.Print("[?] Color2Rad = ", color2Rad);
-		double diferencia = color1Rad - color2Rad;
-		double direccion = -Math.Atan2(Math.Sin(diferencia), Math.Cos(diferencia)); // Nos dice en que sentido deberiamos movernos, sentido horario si es positivo y anti-horario si es negativo
-		GD.Print("[?] Direccion = ", direccion);
-		if (direccion >= 0) { return 1; }
-		return -1;
+		colorObjetivo = nuevoColor;
+		activo = true;
+
+		GD.Print("Mezclando hacia: ", colorObjetivo);
+	}
+
+	// Se llama en ButtonUp: congela el color donde haya quedado.
+	public void DetenerMezcla()
+	{
+		activo = false;
+
+		GD.Print("Mezcla detenida en: ", colorActual);
 	}
 }

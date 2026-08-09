@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dnr8mh71cthc1"]
+
+[ext_resource type="Texture2D" uid="uid://dqt2iayylobcx" path="res://Assets/Sprites/TEST-CUBE.png" id="1_4ta2c"]
+[ext_resource type="Script" uid="uid://bkvrm0cp8aavc" path="res://Assets/Scripts/PocionesControl.cs" id="1_a7roa"]
+[ext_resource type="PackedScene" uid="uid://cq15awwa43wn4" path="res://Assets/Scenes/PocionReferecia.tscn" id="4_4f5qa"]
+[ext_resource type="PackedScene" uid="uid://c5p8h8qo717ol" path="res://Assets/Scenes/Pocion.tscn" id="5_1qa1u"]
+[ext_resource type="Script" uid="uid://dytahtinc8msf" path="res://Assets/Scripts/Mezclador.cs" id="6_ju54e"]
+[ext_resource type="Script" uid="uid://cxv7817yndq31" path="res://Assets/Scripts/Contenedor.cs" id="6_lbitj"]
+[ext_resource type="Script" uid="uid://bhj2j5pnagaqb" path="res://Assets/Scripts/CalcularPorcentajeAciertoColor.cs" id="7_ju54e"]
+
+[node name="Pociones" type="Node2D" unique_id=1265537581 node_paths=PackedStringArray("pocionReferencia", "plantas", "evaluarButton", "contenedor", "calcularPuntaje")]
+position = Vector2(132, 24)
+script = ExtResource("1_a7roa")
+pocionReferencia = NodePath("PocionReferecia")
+plantas = [NodePath("Planta"), NodePath("Planta2"), NodePath("Planta3"), NodePath("Planta4")]
+evaluarButton = NodePath("TextureButton")
+contenedor = NodePath("Contenedor")
+calcularPuntaje = NodePath("CalcularPorcentaje")
+
+[node name="PocionReferecia" parent="." unique_id=1215557556 instance=ExtResource("4_4f5qa")]
+position = Vector2(896, 73)
+
+[node name="Contenedor" type="Node2D" parent="." unique_id=11392968 node_paths=PackedStringArray("sprite")]
+position = Vector2(271, 325)
+script = ExtResource("6_lbitj")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Contenedor" unique_id=1512632524]
+texture = ExtResource("1_4ta2c")
+
+[node name="Planta" parent="." unique_id=427452167 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
+position = Vector2(33, 506)
+contenedor = NodePath("../Contenedor")
+
+[node name="Planta2" parent="." unique_id=653259467 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
+position = Vector2(141, 506)
+contenedor = NodePath("../Contenedor")
+
+[node name="Planta3" parent="." unique_id=2134906103 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
+position = Vector2(264, 504)
+contenedor = NodePath("../Contenedor")
+
+[node name="Planta4" parent="." unique_id=1065968970 node_paths=PackedStringArray("contenedor") instance=ExtResource("5_1qa1u")]
+position = Vector2(380, 506)
+contenedor = NodePath("../Contenedor")
+
+[node name="Mezclador" type="Node2D" parent="." unique_id=2116288329 node_paths=PackedStringArray("sprite")]
+script = ExtResource("6_ju54e")
+sprite = NodePath("../Contenedor/Sprite2D")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1795330831]
+offset_left = 725.0
+offset_top = 436.0
+offset_right = 853.0
+offset_bottom = 564.0
+scale = Vector2(1, 0.64)
+texture_normal = ExtResource("1_4ta2c")
+
+[node name="CalcularPorcentaje" type="Node2D" parent="." unique_id=210696763]
+script = ExtResource("7_ju54e")

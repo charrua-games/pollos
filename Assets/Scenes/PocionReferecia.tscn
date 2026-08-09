@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cq15awwa43wn4"]
+
+[ext_resource type="Texture2D" uid="uid://dqt2iayylobcx" path="res://Assets/Sprites/TEST-CUBE.png" id="1_ko8ev"]
+[ext_resource type="Script" uid="uid://btak8batxd3ea" path="res://Assets/Scripts/PocionReferencia.cs" id="1_omn22"]
+
+[node name="PocionReferecia" type="Node2D" unique_id=1215557556 node_paths=PackedStringArray("sprite")]
+scale = Vector2(2, 1)
+script = ExtResource("1_omn22")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1953845117]
+scale = Vector2(-0.37083128, 0.93275076)
+texture = ExtResource("1_ko8ev")

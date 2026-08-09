@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c5p8h8qo717ol"]
+
+[ext_resource type="Script" uid="uid://gnrnn5ct4xb7" path="res://Assets/Scripts/Pocion.cs" id="1_dgt8t"]
+[ext_resource type="Texture2D" uid="uid://dqt2iayylobcx" path="res://Assets/Sprites/TEST-CUBE.png" id="2_ckmsy"]
+
+[node name="Planta" type="Node2D" unique_id=427452167 node_paths=PackedStringArray("UsarColor", "sprite")]
+script = ExtResource("1_dgt8t")
+UsarColor = NodePath("TextureButton")
+color = Color(0, 0, 0, 1)
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1509553239]
+position = Vector2(-1, 2)
+scale = Vector2(0.56363636, 0.39999953)
+texture = ExtResource("2_ckmsy")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=293411083]
+offset_left = -37.000004
+offset_top = -22.0
+offset_right = 2.9999962
+offset_bottom = 18.0
+scale = Vector2(1.7890983, 1.1910813)
